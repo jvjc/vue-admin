@@ -1,44 +1,36 @@
 <template>
-  <div id="nav">
-    <router-link to="/">
-      <font-awesome-icon icon="user-secret" />
-      Home
-    </router-link>
-    |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <component :is="layout">
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <component :is="Component"/>
+      </transition>
+    </router-view>
+  </component>
 </template>
 <script>
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
-
-library.add(faUserSecret);
+import { watch, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
-  setup() {},
+  setup() {
+    const defaultLayout = 'default';
+    const route = useRoute();
+
+    const layout = ref('');
+
+    watch(
+      () => route.meta,
+      async (meta) => {
+        try {
+          layout.value = `${meta?.layout || defaultLayout}-layout`;
+        } catch (e) {
+          layout.value = `${defaultLayout}-layout`;
+        }
+      },
+      { immediate: true },
+    );
+
+    return { layout };
+  },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
