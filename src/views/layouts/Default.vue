@@ -17,6 +17,8 @@ import Sidebar from '@/views/layouts/components/Sidebar.vue';
 
 import { useStore } from 'vuex';
 
+import axios from 'axios';
+
 library.add(faUser);
 library.add(faUsers);
 
@@ -24,39 +26,30 @@ export default {
   setup() {
     const store = useStore();
 
-    setTimeout(() => {
-      store.commit('Sidebar/setMenu', [
-        {
+    axios.get('https://jsonplaceholder.typicode.com/users')
+      .then((data) => data.data)
+      .then((data) => {
+        const header = [{
           header: 'Main Navigation',
           hiddenOnCollapse: true,
-        },
-        {
+        }];
+
+        const users = data.map((user) => ({
+          title: user.name,
           href: '/',
-          title: 'Home',
           icon: {
             element: 'font-awesome-icon',
             attributes: {
               icon: 'user',
             },
           },
-        },
-        {
-          title: 'About Us',
-          icon: {
-            element: 'font-awesome-icon',
-            attributes: {
-              icon: 'users',
-            },
-          },
-          child: [
-            {
-              href: '/about',
-              title: 'Sub Link',
-            },
-          ],
-        },
-      ]);
-    }, 50);
+        }));
+
+        store.commit('Sidebar/setMenu', [
+          ...header,
+          ...users,
+        ]);
+      });
   },
   components: {
     Sidebar,
