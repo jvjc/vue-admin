@@ -1,0 +1,10 @@
+$hamburger-layer-color: white;
+$hamburger-padding-x: 4px;
+$hamburger-padding-y: 8px;
+$hamburger-layer-width: 26px;
+$hamburger-layer-height: 2px;
+$hamburger-layer-spacing: 5px;
+$hamburger-layer-border-radius: 2px;
+$hamburger-types: (arrow-r);
+
+@import "~hamburgers/_sass/hamburgers/hamburgers.scss";

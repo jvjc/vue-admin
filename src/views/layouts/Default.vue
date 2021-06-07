@@ -1,6 +1,7 @@
 <template>
+  <Navbar :logo="efLogo" />
   <div class="container">
-    <Sidebar/>
+    <Sidebar />
     <router-link to="/">Home</router-link>
     <router-link to="/about">About</router-link>
     <router-link to="/form">Form</router-link>
@@ -12,12 +13,15 @@
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
-import 'vue-sidebar-menu/dist/vue-sidebar-menu.css';
+
 import Sidebar from '@/views/layouts/components/Sidebar.vue';
+import Navbar from '@/views/layouts/components/Navbar.vue';
 
 import { useStore } from 'vuex';
 
 import axios from 'axios';
+
+import efLogo from '@/assets/logo_enviaflores.png';
 
 library.add(faUser);
 library.add(faUsers);
@@ -30,7 +34,7 @@ export default {
       .then((data) => data.data)
       .then((data) => {
         const header = [{
-          header: 'Main Navigation',
+          header: 'Menú',
           hiddenOnCollapse: true,
         }];
 
@@ -45,14 +49,19 @@ export default {
           },
         }));
 
-        store.commit('Sidebar/setMenu', [
+        return [
           ...header,
           ...users,
-        ]);
+        ];
+      }).then((menu) => {
+        store.commit('Sidebar/setMenu', menu);
       });
+
+    return { efLogo };
   },
   components: {
     Sidebar,
+    Navbar,
   },
 };
 </script>

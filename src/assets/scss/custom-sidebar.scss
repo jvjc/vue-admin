@@ -1,0 +1,30 @@
+$item-font-size: 14px;
+$item-line-height: 26px;
+$item-padding: 8px 10px;
+$icon-height: 24px;
+$icon-width: 24px;
+
+$base-bg: #222d32;
+
+@import '~vue-sidebar-menu/src/scss/vue-sidebar-menu.scss';
+
+.v-sidebar-menu {
+    &.vsm_collapsed {
+        .vsm--link {
+            justify-content: center;
+        }
+
+        .vsm--icon {
+            margin-right: 0px;
+        }
+    }
+
+    .vsm--link {
+        font-weight: normal;
+    }
+
+    .vsm--header {
+        font-weight: normal;
+        font-size: 12px;
+    }
+}

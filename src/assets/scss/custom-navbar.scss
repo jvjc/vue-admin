@@ -1,0 +1,18 @@
+.brand-menu {
+    flex: 0 0 calc(290px - 0.75em);
+    overflow: hidden;
+
+    &.fade-enter-active,
+    &.fade-leave-active {
+        transition: all 0.3s ease;
+    }
+
+    &.fade-enter-from,
+    &.fade-leave-to {
+        flex: 0 0 1px;
+    }
+}
+
+.v-sidebar-menu {
+    padding-top: 56px;
+}

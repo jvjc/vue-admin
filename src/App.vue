@@ -1,13 +1,11 @@
 <template>
-  <div class="container">
-    <component :is="layout">
-      <router-view v-slot="{ Component }">
-        <transition name="fade" mode="out-in">
-          <component :is="Component"/>
-        </transition>
-      </router-view>
-    </component>
-  </div>
+  <component :is="layout">
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <component :is="Component"/>
+      </transition>
+    </router-view>
+  </component>
 </template>
 <script>
 import { watch, ref } from 'vue';
