@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar sticky-top navbar-primary bg-primary shadow">
+  <nav class="navbar fixed-top navbar-primary bg-primary shadow">
     <div class="container-fluid">
-      <transition name="fade">
+      <transition name="shrink">
         <div class="col brand-menu" v-show="!collapsed">
           <div class="d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="#">
@@ -51,6 +51,7 @@ export default {
     };
 
     onMounted(() => {
+      document.body.classList.add('with-navbar');
       store.commit('Navbar/setMounted', true);
     });
 

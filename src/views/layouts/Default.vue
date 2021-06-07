@@ -1,19 +1,18 @@
 <template>
   <Navbar :logo="efLogo" />
-  <div class="container">
-    <Sidebar />
-    <router-link to="/">Home</router-link>
-    <router-link to="/about">About</router-link>
-    <router-link to="/form">Form</router-link>
-    <div class="header">Header</div>
-    <slot></slot>
-    <div class="footer">Footer</div>
+  <Sidebar />
+  <div class="main-wrapper d-flex flex-column">
+    <div class="flex-fill">
+      <slot></slot>
+    </div>
+    <Footer />
   </div>
 </template>
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
 
+import Footer from '@/views/layouts/components/Footer.vue';
 import Sidebar from '@/views/layouts/components/Sidebar.vue';
 import Navbar from '@/views/layouts/components/Navbar.vue';
 
@@ -21,6 +20,7 @@ import { useStore } from 'vuex';
 
 import axios from 'axios';
 
+import '@/assets/scss/customize.scss';
 import efLogo from '@/assets/logo_enviaflores.png';
 
 library.add(faUser);
@@ -62,6 +62,7 @@ export default {
   components: {
     Sidebar,
     Navbar,
+    Footer,
   },
 };
 </script>

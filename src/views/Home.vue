@@ -1,5 +1,5 @@
 <template #default>
-  <div class="home">
+  <div class="container-fluid pt-2">
     Hola mundo
   </div>
 </template>

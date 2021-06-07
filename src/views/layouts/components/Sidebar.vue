@@ -6,7 +6,9 @@ import '@/assets/scss/custom-sidebar.scss';
 
 import { SidebarMenu } from 'vue-sidebar-menu';
 
-import { onMounted, ref, computed } from 'vue';
+import {
+  onMounted, ref, computed, watch,
+} from 'vue';
 import { mapGetters, useStore } from 'vuex';
 
 import { debounce } from 'lodash';
@@ -33,7 +35,13 @@ export default {
 
     onMounted(() => {
       onResize();
+      document.body.classList.add('with-sidebar');
       store.commit('Sidebar/setMounted', true);
+    });
+
+    watch(collapsed, (value) => {
+      console.log('asdsdd');
+      document.body.classList[value ? 'add' : 'remove']('collapsed');
     });
 
     return {

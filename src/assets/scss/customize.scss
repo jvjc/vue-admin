@@ -1,0 +1,24 @@
+html, body {
+    height: 100%;
+}
+
+.main-wrapper {
+    height: 100%;
+}
+
+.with-navbar {
+    .main-wrapper {
+        padding-top: 56px;
+    }
+}
+
+.with-sidebar {
+    .main-wrapper {
+        transition: 0.3s padding ease;
+        padding-left: 290px;
+    }
+
+    &.collapsed .main-wrapper {
+        padding-left: 65px;
+    }
+}
